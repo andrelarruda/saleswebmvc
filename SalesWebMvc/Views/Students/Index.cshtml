@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SalesWebMvc.Models.Student>;
+
+@{
+    ViewData["Title"] = "Listing all Students";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@Html.ActionLink("Create new", "Create", "Students", new { }, new { @class = "btn btn-default"})
+
+<p>Actually there are <strong>@Model.Count()</strong> students stored.</p>
+<hr />
+
+<h4>See them below:</h4>
+
+<table>
+    <thead>
+    <th>Name</th>
+    <th>Is newly enrolled</th>
+    </thead>
+    <tbody>
+
+        @foreach (Student stdt in Model)
+        {
+            <tr>
+                <td>@stdt.StudentName</td>
+                <td>@Html.CheckBoxFor(model => stdt.IsNewlyEnrolled, new { disabled = true })</td>
+            </tr>
+        }
+    </tbody>
+</table>

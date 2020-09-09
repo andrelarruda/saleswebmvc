@@ -36,9 +36,25 @@
             </div>
             <div class="form-group">
                 <label asp-for="Seller.DepartmentId" class="control-label"></label>
+                @* Primeira maneira de se fazer um drop down list (Usando tag helper) *@
                 <select asp-for="Seller.DepartmentId" asp-items="@(new SelectList(Model.Departments, "Id", "Name"))" class="form-control">
                 </select>
             </div>
+
+            @* Segunda maneira de se fazer um drop down list (usando html helper) *@
+            @*
+        @Html.DropDownListFor(m => m.Departments, new SelectList(Model.Departments, "Id", "Name"), "Select department")
+            *@
+
+            @* Terceira maneira de se fazer um drop down list (usando html helper) *@
+            @*
+            @Html.DropDownList("Department",
+                            new SelectList(Model.Departments, "Id", "Name"),
+                            "Select the department",
+                            new { @class = "form-control" })
+            *@
+
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
@@ -47,7 +63,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
